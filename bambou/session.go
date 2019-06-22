@@ -34,6 +34,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+  "fmt"
 
 	log "github.com/sirupsen/logrus"
 )
@@ -249,7 +250,8 @@ func (s *Session) send(request *http.Request, info *FetchingInfo) (*http.Respons
 		if len(vsdresp.VsdErrors) == 0 {
 			return nil, NewBambouError("Non-VSD server HTTP error", response.Status)
 		} else { // Valid VSD response
-			return nil, NewBambouError(vsdresp.VsdErrors[0].Descriptions[0].Title, vsdresp.VsdErrors[0].Descriptions[0].Description)
+			return nil, NewBambouError("vsd response error", fmt.Sprintf("%#s", vsdresp))
+			//return nil, NewBambouError(vsdresp.VsdErrors[0].Descriptions[0].Title, vsdresp.VsdErrors[0].Descriptions[0].Description)
 		}
 
 	default:
