@@ -35,7 +35,7 @@ func Logger() *logging.Logger {
 	if defaultLogger == nil {
 		logger, _ := logging.SimpleLogger("bambou")
 		defaultLogger = logger
-		logger.SetLevel(logging.ERROR)
+		logger.SetLevel(logging.DEBUG)
 	}
 
 	return defaultLogger

@@ -62,6 +62,6 @@ func NewError(code int, description string) *Error {
 // Error returns the string representation of a Bambou Error (making it an "error")
 // Valid JSON formatted
 func (be *Error) Error() string {
-	// return fmt.Sprintf("%+v", *be)
-	return fmt.Sprintf("{\"title\": \"%s\", \"description\": \"%s\"}", be.Title, be.Description)
+	return fmt.Sprintf("%+v", *be)
+	//return fmt.Sprintf("{\"title\": \"%s\", \"description\": \"%s\"}", be.Title, be.Description)
 }
