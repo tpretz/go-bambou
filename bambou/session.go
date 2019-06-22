@@ -324,20 +324,24 @@ func (s *Session) Reset() {
 // FetchEntity fetchs the given Identifiable from the server.
 func (s *Session) FetchEntity(object Identifiable) *Error {
 
+  log.Debug("starting fetchentity")
 	url, berr := s.getPersonalURL(object)
 	if berr != nil {
 		return berr
 	}
+  log.Debug("after url")
 
 	request, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return NewBambouError("HTTP transaction error", err.Error())
 	}
+  log.Debug("after getreqbuild")
 
 	response, berr := s.send(request, nil)
 	if berr != nil {
 		return berr
 	}
+  log.Debug("after send")
 	defer response.Body.Close()
 
 	body, _ := ioutil.ReadAll(response.Body)

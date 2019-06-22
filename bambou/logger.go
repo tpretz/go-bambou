@@ -24,6 +24,7 @@
 package bambou
 
 import (
+  "os"
 	"github.com/ccding/go-logging/logging"
 )
 
@@ -35,6 +36,7 @@ func Logger() *logging.Logger {
 	if defaultLogger == nil {
 		logger, _ := logging.SimpleLogger("bambou")
 		defaultLogger = logger
+    logger.SetOutput(os.Stdout)
 		logger.SetLevel(logging.DEBUG)
 	}
 
