@@ -24,6 +24,7 @@
 package bambou
 
 import (
+  "os"
 	"bytes"
 	"crypto/tls"
 	"encoding/base64"
@@ -89,6 +90,8 @@ func NewSession(username, password, organization, url string, root Rootable) *Se
 			InsecureSkipVerify: true,
 		},
 	}
+  log.SetOutput(os.Stderr)
+  log.SetLevel(log.TraceLevel)
 
 	return &Session{
 		Username:     username,
@@ -110,6 +113,8 @@ func NewX509Session(cert *tls.Certificate, url string, root Rootable) *Session {
 			InsecureSkipVerify: true,
 		},
 	}
+  log.SetOutput(os.Stderr)
+  log.SetLevel(log.TraceLevel)
 
 	return &Session{
 		Certificate: cert,
